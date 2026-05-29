@@ -1,4 +1,7 @@
-from typing import List
+# ID: 152 | Maximum Product Subarray
+# URL: https://leetcode.com/problems/maximum-product-subarray/
+
+from typing import List, Optional
 
 
 #IMPORTANT!! Submit Code Region Begin(Do not remove this line)
@@ -84,14 +87,27 @@ class Solution:
         # return maximum
 
         # at every element, I need to know both the maximum and minimum product of any subarray ending at that element
+        # zeros reset both to 1
 
+        result = max(nums)
+        max_prod = 1
+        min_prod = 1
 
+        for num in nums:
+            if num == 0:
+                max_prod = 1
+                min_prod = 1
+            else:
+                tmp_max_prod = max_prod
+                max_prod = max(num, max_prod * num, min_prod * num)
+                min_prod = min(num, tmp_max_prod * num, min_prod * num)
+                result = max(result, max_prod, min_prod)
+        return result
         
 #IMPORTANT!! Submit Code Region End(Do not remove this line)
 
 if __name__ == "__main__":
     from test_case_runner import run_tests
-
     run_tests(Solution(), """
 Test Case 1:
 -----------------------------------------------------
