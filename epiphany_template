@@ -1,0 +1,10 @@
+# ID: ${challenge.questionId} | ${challenge.name}
+# URL: https://leetcode.com/problems/${challenge.slug}/
+
+from typing import List, Optional
+
+${challenge.code}
+
+if __name__ == "__main__":
+    from test_case_runner import run_tests
+    run_tests(Solution(), """${challenge.testCases}""")
