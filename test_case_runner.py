@@ -36,7 +36,7 @@ def _parse_test_cases(raw_text):
         input_match = re.search(r'(?i)input:\s*(.*?)(?=\n\s*-{3,}|expected output:|$)', block, re.DOTALL)
         output_match = re.search(r'(?i)expected output:\s*(.*?)(?=\s*$)', block, re.DOTALL)
         if input_match:
-            raw_inputs = re.split(r'\n\s*\n', input_match.group(1).strip())
+            raw_inputs = input_match.group(1).strip().splitlines()
             inputs = [_parse_value(v) for v in raw_inputs if v.strip().strip('-').strip()]
             expected = _parse_value(output_match.group(1)) if output_match else None
             test_cases.append((inputs, expected))
